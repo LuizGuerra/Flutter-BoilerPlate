@@ -1,8 +1,7 @@
+import 'package:boilerplate/interface/views/home_tab/home_follow_up.dart';
 import 'package:boilerplate/resources/app_colors.dart';
 import 'package:boilerplate/resources/app_strings.dart';
-
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../../router/routes.dart';
 
@@ -11,24 +10,26 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(AppStrings.appBar.titleExample),
-        ),
-        body: Center(
-          // child: Text(AppStrings.helloWorld, style: const TextStyle(color: AppColors.white)),
-          child: Column(
-            children: [
-              Text(AppStrings.helloWorld, style: const TextStyle(color: AppColors.white)),
-              TextButton(
+    return CupertinoPageScaffold(
+        // navigationBar: CupertinoNavigationBar(),
+        child: SafeArea(
+      child: Center(
+        child: Column(
+          children: [
+            const SizedBox(height: 36),
+            Text(AppStrings.helloWorld,
+                style: const TextStyle(color: AppColors.white)),
+            const SizedBox(height: 36),
+            CupertinoButton.filled(
+                child: const Text("Next Page"),
                 onPressed: () {
-                  // Navigator.of(context).pushNamed(Routes.home_follow_up.name);
-                  context.goNamed(Routes.home_follow_up.name);
-                },
-                child: const Text("Next screen"),
-              )
-            ],
-          ),
-        ));
+                  Navigator.of(context).pushNamed(Routes.homeFollowUp);
+                  // Navigator.push(context,
+                  //     CupertinoPageRoute(builder: (_) => const HomeFollowUp()));
+                }),
+          ],
+        ),
+      ),
+    ));
   }
 }

@@ -53,6 +53,8 @@ class _AppBar {
   final String back = "Voltar";
   final String filter = 'Filtrar';
 
+  final String home = "Home";
+
   final String titleExample = "Title Example";
 }
 
