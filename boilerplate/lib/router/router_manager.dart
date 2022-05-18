@@ -35,7 +35,10 @@ class RouterManager {
             case Routes.home:
               return const Home();
             case Routes.homeFollowUp:
-              return const HomeFollowUp();
+              if (args is int) {
+                return HomeFollowUp(indexArgument: args);
+              }
+              break;
             case Routes.profile:
               if (args is SignUpController) {
                 return Profile(signUpController: args);

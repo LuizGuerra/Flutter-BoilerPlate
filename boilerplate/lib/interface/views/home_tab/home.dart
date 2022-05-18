@@ -12,9 +12,32 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final customList = <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-  final contentController = FilteredContentController<int>(
-      content: <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+  final contentController = FilteredContentController<int>(content: <int>[
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ]);
   final searchController = TextEditingController();
   bool noMatchingFlag = false;
 
@@ -26,28 +49,26 @@ class _HomeState extends State<Home> {
             middle: Text("Welcome back, Luiz",
                 style: TextStyle(color: AppColors.white))),
         child: SafeArea(
-            child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                child: CupertinoSearchTextField(
-                  autocorrect: true,
-                  backgroundColor: AppColors.background2,
-                  itemColor: AppColors.white.withOpacity(0.8),
-                  placeholderStyle:
-                      TextStyle(color: AppColors.white.withOpacity(0.8)),
-                  controller: searchController,
-                  onChanged: onChangeSearchBar,
-                ),
+            child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: CupertinoSearchTextField(
+                autocorrect: true,
+                backgroundColor: AppColors.background2,
+                itemColor: AppColors.white.withOpacity(0.8),
+                placeholderStyle:
+                    TextStyle(color: AppColors.white.withOpacity(0.8)),
+                controller: searchController,
+                onChanged: onChangeSearchBar,
               ),
-              noMatchingFlagWidget(),
-              Flexible(
-                  child: FilterableListWidget(
-                      contentController: contentController))
-            ],
-          ),
+            ),
+            noMatchingFlagWidget(),
+            Expanded(
+                child: FilterableListWidget(
+                    contentController: contentController)),
+          ],
         )));
   }
 
