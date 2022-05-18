@@ -17,4 +17,11 @@ class FilteredContentController<Comparable> {
   void reset() {
     _filteredContent = List<Comparable>.from(_content);
   }
+
+  void updateContent(List<Comparable> newContent) {
+    _content.clear();
+    _content.addAll(newContent);
+    _filteredContent.clear();
+    _filteredContent.addAll(newContent);
+  }
 }

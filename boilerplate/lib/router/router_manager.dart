@@ -4,17 +4,13 @@ import 'package:boilerplate/interface/views/profile/connect.dart';
 import 'package:boilerplate/interface/views/profile/login.dart';
 import 'package:boilerplate/interface/views/profile/profile.dart';
 import 'package:boilerplate/interface/views/profile/sign_up.dart';
+import 'package:boilerplate/model/entity/content.dart';
 import 'package:boilerplate/router/routes.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../interface/views/error_page.dart';
 import '../interface/views/home_tab/home.dart';
 import '../main.dart';
-
-class CustomArgs {
-  final int? args;
-  CustomArgs({this.args});
-}
 
 /// Route manager
 class RouterManager {
@@ -35,8 +31,8 @@ class RouterManager {
             case Routes.home:
               return const Home();
             case Routes.homeFollowUp:
-              if (args is int) {
-                return HomeFollowUp(indexArgument: args);
+              if (args is Content) {
+                return HomeFollowUp(content: args);
               }
               break;
             case Routes.profile:

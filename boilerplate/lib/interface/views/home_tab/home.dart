@@ -1,7 +1,9 @@
+import 'package:boilerplate/controller/content_controller.dart';
 import 'package:boilerplate/resources/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../controller/filtered_content_controller.dart';
+import '../../../model/entity/content.dart';
 import '../../components/filterable_list_widget.dart';
 
 class Home extends StatefulWidget {
@@ -12,33 +14,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final contentController = FilteredContentController<int>(content: <int>[
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25
-  ]);
-  final searchController = TextEditingController();
+  late final ContentController contentController;
+  late final FilteredContentController<Content> filterController;
+
+  final TextEditingController searchController = TextEditingController();
   bool noMatchingFlag = false;
 
   @override
@@ -66,8 +45,8 @@ class _HomeState extends State<Home> {
             ),
             noMatchingFlagWidget(),
             Expanded(
-                child: FilterableListWidget(
-                    contentController: contentController)),
+                child:
+                    FilterableListWidget(filterController: filterController)),
           ],
         )));
   }
@@ -82,12 +61,26 @@ class _HomeState extends State<Home> {
     return Container();
   }
 
+  /// Receive and update data behavior
+  @override
+  void initState() {
+    super.initState();
+    filterController = FilteredContentController<Content>(content: []);
+    contentController = ContentController(onReceive: onReceiveContent);
+  }
+
+  void onReceiveContent(List<Content> newContent) {
+    setState(() {
+      filterController.updateContent(newContent);
+    });
+  }
+
   void onChangeSearchBar(String input) {
     if (input.isEmpty) {
-      contentController.reset();
+      filterController.reset();
     } else {
       noMatchingFlag =
-          contentController.filter((e) => e.toString().contains(input));
+          filterController.filter((e) => e.title.contains(input));
     }
     setState(() {});
   }
