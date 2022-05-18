@@ -13,6 +13,7 @@ void main() {
   runApp(const CupertinoApp(
     debugShowCheckedModeBanner: false,
     theme: CupertinoThemeData(
+        brightness: Brightness.light,
         scaffoldBackgroundColor: AppColors.background,
         barBackgroundColor: AppColors.background,
         primaryColor: AppColors.mainColor,
@@ -21,6 +22,7 @@ void main() {
             textStyle: TextStyle(color: AppColors.white))),
     onGenerateRoute: RouterManager.generateRout,
     initialRoute: Routes.root,
+    // home: App(),
   ));
 }
 
@@ -46,9 +48,12 @@ class App extends StatelessWidget {
         label: AppStrings.bottomBar.profile)
   ];
 
+  final _tabBarController = CupertinoTabController(initialIndex: 1);
+
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
+      controller: _tabBarController,
       tabBar: CupertinoTabBar(
         items: _bottomBarItems,
       ),
@@ -57,14 +62,16 @@ class App extends StatelessWidget {
   }
 
   Widget _tabBuilder(BuildContext context, int index) {
-    return CupertinoTabView(builder: (_) {
-      switch (index) {
-        case 0:
-          return const Home();
-        case 1:
-          return const Profile();
-      }
-      return const ErrorPage();
-    }, onGenerateRoute: RouterManager.generateRout);
+    return CupertinoTabView(
+        builder: (_) {
+          switch (index) {
+            case 0:
+              return const Home();
+            case 1:
+              return const Profile();
+          }
+          return const ErrorPage();
+        },
+        onGenerateRoute: RouterManager.generateRout);
   }
 }

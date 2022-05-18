@@ -12,8 +12,8 @@ class ExampleModel with NetworkBasicOperationsMixin {
 
   // Model functions
   Future<String> getSomething() async {
-    final result = await get(additionalPath: "example/request");
-    if (result == null) return "";
-    return result.body;
+    final response = await get(additionalPath: "example/request");
+    if (response == null) return "";
+    return response.body;
   }
 }

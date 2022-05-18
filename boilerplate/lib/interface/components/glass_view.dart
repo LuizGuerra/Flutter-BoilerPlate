@@ -12,20 +12,32 @@ class GlassComponent extends StatelessWidget {
   /// Background
   final Color color;
 
+  // Border Radius
+  final BorderRadius borderRadius;
+
+  // Child padding
+  final EdgeInsets padding;
+
   /// GlassComponent initializer
-  const GlassComponent(
-      {required this.child, this.color = AppColors.white, Key? key})
-      : super(key: key);
+  GlassComponent(
+      {required this.child,
+      this.color = AppColors.white,
+      BorderRadius? radius,
+      EdgeInsets? insets,
+      Key? key})
+      : borderRadius = radius ?? BorderRadius.circular(10),
+        padding = insets ?? const EdgeInsets.fromLTRB(40, 18, 40, 28),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: borderRadius,
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
           decoration: BoxDecorationExtension.glassEffect(color),
-          padding: const EdgeInsets.fromLTRB(40, 18, 40, 28),
+          padding: padding,
           child: child,
         ),
       ),

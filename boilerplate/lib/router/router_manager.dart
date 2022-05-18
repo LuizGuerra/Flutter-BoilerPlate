@@ -1,5 +1,8 @@
 import 'package:boilerplate/interface/views/home_tab/home_follow_up.dart';
+import 'package:boilerplate/interface/views/profile/connect.dart';
+import 'package:boilerplate/interface/views/profile/login.dart';
 import 'package:boilerplate/interface/views/profile/profile.dart';
+import 'package:boilerplate/interface/views/profile/sign_up.dart';
 import 'package:boilerplate/router/routes.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -34,6 +37,12 @@ class RouterManager {
               return const HomeFollowUp();
             case Routes.profile:
               return const Profile();
+            case Routes.connect:
+              return const Connect();
+            case Routes.login:
+              return const Login();
+            case Routes.signUp:
+              return const SignUp();
 
               // return args is CustomArgs
               //     // ? SomeView(args: CustomArgs(args: args))

@@ -2,53 +2,37 @@ import 'package:flutter/cupertino.dart';
 
 import '../../resources/app_colors.dart';
 
+// ignore_for_file: avoid_init_to_null
 /// TextField type
-enum TextFieldFinality {
-  regular, email, password
-}
+enum TextFieldFinality { regular, email, password }
 
 ///Text Fields's configurations class
 class TextFieldConfigurations {
   final FontWeight fontWeight;
   final Color backgroundColor;
-  final Color fieldColor = AppColors.background2;
-  final Color fontColor = AppColors.white;
-  final double fontSize = 16;
-  final double height = 48;
-  final double width = 200;
+  final Color fieldColor;
+  final Color fontColor;
+  final double fontSize;
+  final double height;
 
-  ///Initializer
-  TextFieldConfigurations({
-    required this.fontWeight,
-    required this.backgroundColor,
-  });
-}
+  TextFieldConfigurations(
+      {this.fontWeight = FontWeight.normal,
+      this.backgroundColor = AppColors.lightGray,
+      this.fieldColor = AppColors.background2,
+      this.fontColor = AppColors.background,
+      this.fontSize = 16,
+      this.height = 54});
 
-/// Enumeration for types of TextFields
-enum TextFieldType {
-  lightGray,
-}
-
-/// Text Field Configurations' Factory
-extension TextFieldTypeExtension on TextFieldType {
-  TextFieldConfigurations configuration() {
-    switch (this) {
-      case TextFieldType.lightGray:
-        return TextFieldConfigurations(
-          fontWeight: FontWeight.w400,
-          backgroundColor: AppColors.lightGray,
-        );
-    }
-  }
+  static TextFieldConfigurations lightGray() => TextFieldConfigurations();
 }
 
 /// Reusable button for the application
 class ReusableTextField extends StatefulWidget {
   /// Text field placeholder text
-  final String placeholderText;
+  final String placeholder;
 
   /// Text field text controller
-  final TextEditingController textEditingController;
+  final TextEditingController controller;
 
   /// Text field configurations
   final TextFieldConfigurations configuration;
@@ -61,13 +45,16 @@ class ReusableTextField extends StatefulWidget {
 
   ///Initializer
   ReusableTextField(
-      {Key? key, required this.placeholderText,
-      required this.textEditingController,
-      TextFieldType type = TextFieldType.lightGray,
-      double borderRadius = 50.0,
-      this.finality = TextFieldFinality.regular})
-      : configuration = type.configuration(),
-      this.borderRadius = BorderRadius.all(Radius.circular(borderRadius)), super(key: key);
+      {Key? key,
+      required this.placeholder,
+      required this.controller,
+      TextFieldConfigurations? configuration = null,
+      this.finality = TextFieldFinality.regular,
+      double borderRadius = 20.0})
+      : borderRadius = BorderRadius.all(Radius.circular(borderRadius)),
+        this.configuration =
+            configuration ?? TextFieldConfigurations.lightGray(),
+        super(key: key);
 
   @override
   _ReusableTextFieldState createState() => _ReusableTextFieldState();
@@ -81,19 +68,19 @@ class _ReusableTextFieldState extends State<ReusableTextField> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: widget.configuration.height,
-      width: widget.configuration.width,
+      // width: widget.configuration.width,
       child: CupertinoTextField(
         obscureText: _isPassword(),
         keyboardType: _keyboard(),
         autocorrect: !_isEmail(),
-        controller: widget.textEditingController,
+        controller: widget.controller,
         placeholderStyle: TextStyle(
           color: widget.configuration.fieldColor,
           fontSize: widget.configuration.fontSize,
           fontWeight: widget.configuration.fontWeight,
         ),
-        padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 20.0),
-        placeholder: widget.placeholderText,
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20.0),
+        placeholder: widget.placeholder,
         style: TextStyle(
           fontSize: widget.configuration.fontSize,
           fontWeight: widget.configuration.fontWeight,

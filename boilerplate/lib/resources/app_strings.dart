@@ -69,7 +69,8 @@ class _Button {
 }
 
 class _Images {
-  final String background = "assets/images/background.png";
+  final String background = "assets/images/mobile_background.png";
+  final String people = "assets/images/people.png";
 }
 
 class _ExternalURL {

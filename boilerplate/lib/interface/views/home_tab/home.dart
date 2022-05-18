@@ -1,4 +1,3 @@
-import 'package:boilerplate/interface/views/home_tab/home_follow_up.dart';
 import 'package:boilerplate/resources/app_colors.dart';
 import 'package:boilerplate/resources/app_strings.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,8 +23,6 @@ class Home extends StatelessWidget {
                 child: const Text("Next Page"),
                 onPressed: () {
                   Navigator.of(context).pushNamed(Routes.homeFollowUp);
-                  // Navigator.push(context,
-                  //     CupertinoPageRoute(builder: (_) => const HomeFollowUp()));
                 }),
           ],
         ),
