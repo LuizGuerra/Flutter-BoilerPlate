@@ -37,7 +37,7 @@ class UserFluxPageScaffold extends StatelessWidget {
           header(context),
           Flexible(
             child: GlassComponent(
-                insets: const EdgeInsets.all(20),
+                insets: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                 radius: const BorderRadius.vertical(top: Radius.circular(40)),
                 color: AppColors.background,
                 child: child),

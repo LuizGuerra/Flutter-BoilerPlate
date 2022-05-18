@@ -37,11 +37,11 @@ class _SignUpState extends State<SignUp> {
               finality: TextFieldFinality.password),
           const SizedBox(height: 16),
           _richText(),
-          const SizedBox(height: 36),
+          const SizedBox(height: 24),
           ReusableButton("Agree and Continue",
               onPressed: loginAction, configuration: ButtonConfigurations.main()),
           const SizedBox(height: 8),
-          ReusableButton("Login",
+          ReusableButton("I have an account",
               onPressed: () {
                 Navigator.of(context).popAndPushNamed(Routes.login);
               },

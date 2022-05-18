@@ -14,14 +14,11 @@ class Connect extends StatelessWidget {
       "Connect",
       child: Column(
         children: [
-          const SizedBox(height: 44),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              "Make an account to enjoy all our new features!",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 24),
-              textAlign: TextAlign.center,
-            ),
+          const SizedBox(height: 24),
+          const Text(
+            "Make an account to enjoy all our features!",
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 24),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 36),
           ReusableButton(
@@ -39,8 +36,16 @@ class Connect extends StatelessWidget {
             },
             configuration: ButtonConfigurations.secondary(),
           ),
-          const Spacer(),
-          Image.asset(AppStrings.images.people)
+          const SizedBox(height: 16),
+          // const Spacer(),
+          Expanded(
+            child: Image.asset(
+              AppStrings.images.people,
+              width: MediaQuery.of(context).size.width,
+              fit: BoxFit.contain,
+              alignment: Alignment.bottomCenter,
+            ),
+          )
         ],
       ),
     );
