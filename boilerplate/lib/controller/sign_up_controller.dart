@@ -8,7 +8,11 @@ class SignUpController {
     return (await singleton.login(email, password)).isNotEmpty;
   }
 
-  bool isLoggedIn() {
-    return !singleton.isDisconected();
+  bool isConnected() {
+    return singleton.isConnected();
+  }
+
+  bool isDisconnected() {
+    return !singleton.isConnected();
   }
 }

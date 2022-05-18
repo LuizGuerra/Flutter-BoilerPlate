@@ -1,32 +1,73 @@
 import 'package:boilerplate/resources/app_colors.dart';
-import 'package:boilerplate/resources/app_strings.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../router/routes.dart';
+import '../../../controller/filtered_content_controller.dart';
+import '../../components/filterable_list_widget.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final customList = <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  final contentController = FilteredContentController<int>(
+      content: <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+  final searchController = TextEditingController();
+  bool noMatchingFlag = false;
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        // navigationBar: CupertinoNavigationBar(),
+        navigationBar: const CupertinoNavigationBar(
+            automaticallyImplyMiddle: true,
+            middle: Text("Welcome back, Luiz",
+                style: TextStyle(color: AppColors.white))),
         child: SafeArea(
-      child: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 36),
-            Text(AppStrings.helloWorld,
-                style: const TextStyle(color: AppColors.white)),
-            const SizedBox(height: 36),
-            CupertinoButton.filled(
-                child: const Text("Next Page"),
-                onPressed: () {
-                  Navigator.of(context).pushNamed(Routes.homeFollowUp);
-                }),
-          ],
-        ),
-      ),
-    ));
+            child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                child: CupertinoSearchTextField(
+                  autocorrect: true,
+                  backgroundColor: AppColors.background2,
+                  itemColor: AppColors.white.withOpacity(0.8),
+                  placeholderStyle:
+                      TextStyle(color: AppColors.white.withOpacity(0.8)),
+                  controller: searchController,
+                  onChanged: onChangeSearchBar,
+                ),
+              ),
+              noMatchingFlagWidget(),
+              Flexible(
+                  child: FilterableListWidget(
+                      contentController: contentController))
+            ],
+          ),
+        )));
+  }
+
+  Widget noMatchingFlagWidget() {
+    if (noMatchingFlag) {
+      return const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text("No matching value found..."),
+      );
+    }
+    return Container();
+  }
+
+  void onChangeSearchBar(String input) {
+    if (input.isEmpty) {
+      contentController.reset();
+    } else {
+      noMatchingFlag =
+          contentController.filter((e) => e.toString().contains(input));
+    }
+    setState(() {});
   }
 }

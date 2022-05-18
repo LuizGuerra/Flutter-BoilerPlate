@@ -1,3 +1,4 @@
+import 'package:boilerplate/controller/sign_up_controller.dart';
 import 'package:boilerplate/interface/views/error_page.dart';
 import 'package:boilerplate/interface/views/profile/profile.dart';
 import 'package:boilerplate/resources/app_colors.dart';
@@ -48,7 +49,7 @@ class App extends StatelessWidget {
         label: AppStrings.bottomBar.profile)
   ];
 
-  final _tabBarController = CupertinoTabController(initialIndex: 1);
+  final _tabBarController = CupertinoTabController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,7 @@ class App extends StatelessWidget {
             case 0:
               return const Home();
             case 1:
-              return const Profile();
+              return Profile(signUpController: SignUpController());
           }
           return const ErrorPage();
         },

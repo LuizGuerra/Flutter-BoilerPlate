@@ -1,3 +1,4 @@
+import 'package:boilerplate/controller/sign_up_controller.dart';
 import 'package:boilerplate/interface/views/home_tab/home_follow_up.dart';
 import 'package:boilerplate/interface/views/profile/connect.dart';
 import 'package:boilerplate/interface/views/profile/login.dart';
@@ -36,18 +37,16 @@ class RouterManager {
             case Routes.homeFollowUp:
               return const HomeFollowUp();
             case Routes.profile:
-              return const Profile();
+              if (args is SignUpController) {
+                return Profile(signUpController: args);
+              }
+              break;
             case Routes.connect:
               return const Connect();
             case Routes.login:
               return const Login();
             case Routes.signUp:
               return const SignUp();
-
-              // return args is CustomArgs
-              //     // ? SomeView(args: CustomArgs(args: args))
-              //     ? const Profile()
-              //     : const ErrorPage();
           }
 
           /// If page doesn't exists or argument were incorrect, return error route

@@ -18,7 +18,7 @@ class UserModel with NetworkBasicOperationsMixin {
   // If there is conected user
   User? _user;
 
-  bool isDisconected() => _user == null;
+  bool isConnected() => _user != null;
 
   Future<String> login(String email, String password) async {
     final response = await get(queryParameters: {"email": email, "password": password});
