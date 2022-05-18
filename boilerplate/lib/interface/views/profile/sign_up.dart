@@ -23,31 +23,33 @@ class _SignUpState extends State<SignUp> {
     return UserFluxPageScaffold(
       withBackButton: true,
       "Sign Up",
-      child: Column(
+      child: ListView(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         children: [
-          const SizedBox(height: 44),
-          ReusableTextField(
-              controller: _emailController,
-              placeholder: "E-mail",
-              finality: TextFieldFinality.email),
-          const SizedBox(height: 8),
-          ReusableTextField(
-              controller: _passwordController,
-              placeholder: "Password",
-              finality: TextFieldFinality.password),
-          const SizedBox(height: 16),
-          _richText(),
-          const SizedBox(height: 24),
-          ReusableButton("Agree and Continue",
-              onPressed: loginAction, configuration: ButtonConfigurations.main()),
-          const SizedBox(height: 8),
-          ReusableButton("I have an account",
-              onPressed: () {
-                Navigator.of(context).popAndPushNamed(Routes.login);
-              },
-              configuration: ButtonConfigurations.secondary()),
+        ReusableTextField(
+            controller: _emailController,
+            placeholder: "E-mail",
+            finality: TextFieldFinality.email),
+        const SizedBox(height: 8),
+        ReusableTextField(
+            controller: _passwordController,
+            placeholder: "Password",
+            finality: TextFieldFinality.password),
+        const SizedBox(height: 16),
+        _richText(),
+        const SizedBox(height: 24),
+        ReusableButton("Agree and Continue",
+            onPressed: loginAction, configuration: ButtonConfigurations.main()),
+        const SizedBox(height: 8),
+        ReusableButton("I have an account",
+            onPressed: () {
+              Navigator.of(context).popAndPushNamed(Routes.login);
+            },
+            configuration: ButtonConfigurations.secondary()),
+        const SizedBox(height: 48),
         ],
-      ),
+      )
     );
   }
 

@@ -1,4 +1,3 @@
-
 import 'package:boilerplate/interface/components/reusable_button.dart';
 import 'package:boilerplate/interface/views/profile/user_flux.dart';
 import 'package:boilerplate/resources/app_strings.dart';
@@ -13,8 +12,9 @@ class Connect extends StatelessWidget {
     return UserFluxPageScaffold(
       "Connect",
       child: Column(
+        // physics: const NeverScrollableScrollPhysics(),
+        // shrinkWrap: true,
         children: [
-          const SizedBox(height: 24),
           const Text(
             "Make an account to enjoy all our features!",
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 24),
@@ -23,7 +23,7 @@ class Connect extends StatelessWidget {
           const SizedBox(height: 36),
           ReusableButton(
             "Login",
-            onPressed: (){
+            onPressed: () {
               Navigator.of(context).pushNamed(Routes.login);
             },
             configuration: ButtonConfigurations.main(),
@@ -31,25 +31,20 @@ class Connect extends StatelessWidget {
           const SizedBox(height: 16),
           ReusableButton(
             "Sign Up",
-            onPressed: (){
+            onPressed: () {
               Navigator.of(context).pushNamed(Routes.signUp);
             },
             configuration: ButtonConfigurations.secondary(),
           ),
           const SizedBox(height: 16),
-          // const Spacer(),
-          Expanded(
-            child: Image.asset(
-              AppStrings.images.people,
-              width: MediaQuery.of(context).size.width,
-              fit: BoxFit.contain,
-              alignment: Alignment.bottomCenter,
-            ),
+          Image.asset(
+            AppStrings.images.people,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.contain,
+            alignment: Alignment.bottomCenter,
           )
         ],
       ),
     );
   }
-
-
 }

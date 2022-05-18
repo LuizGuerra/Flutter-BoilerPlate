@@ -24,7 +24,6 @@ class _LoginState extends State<Login> {
       "Login",
       child: Column(
         children: [
-          const SizedBox(height: 44),
           ReusableTextField(
               controller: _emailController,
               placeholder: "E-mail",
@@ -42,6 +41,7 @@ class _LoginState extends State<Login> {
           ReusableButton("Create account", onPressed: () {
             Navigator.of(context).popAndPushNamed(Routes.signUp);
           }, configuration: ButtonConfigurations.secondary()),
+          const SizedBox(height: 48),
         ],
       ),
     );

@@ -1,4 +1,3 @@
-import 'package:boilerplate/interface/components/reusable_button.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../resources/app_colors.dart';
@@ -30,17 +29,19 @@ class UserFluxPageScaffold extends StatelessWidget {
   Widget content(BuildContext context) {
     return SafeArea(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           header(context),
           Flexible(
-            child: GlassComponent(
-                insets: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                radius: const BorderRadius.vertical(top: Radius.circular(40)),
-                color: AppColors.background,
-                child: child),
+            child: SingleChildScrollView(
+              child: GlassComponent(
+                  insets: const EdgeInsets.fromLTRB(20, 48, 20, 0),
+                  radius: const BorderRadius.vertical(
+                      top: Radius.circular(40)),
+                  color: AppColors.background,
+                  child: child),
+            ),
           ),
         ],
       ),
@@ -61,6 +62,7 @@ class UserFluxPageScaffold extends StatelessWidget {
 
     if (withBackButton) {
       return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
