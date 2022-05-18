@@ -10,6 +10,7 @@ class HomeFollowUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         backgroundColor: AppColors.background,
@@ -17,18 +18,23 @@ class HomeFollowUp extends StatelessWidget {
         middle: const Text(
           "",
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             color: AppColors.white,
           ),
         ),
       ),
       child: ListView(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.network(
             content.image,
-            width: MediaQuery.of(context).size.width,
+            width: width,
+            fit: BoxFit.fitWidth,
+            errorBuilder: (context, widget, chunk) => Container(
+                width: width,
+                height: 200,
+                color: AppColors.background2,
+                child: Icon(CupertinoIcons.exclamationmark_circle,
+                    color: AppColors.red.withOpacity(0.8))),
           ),
           const SizedBox(height: 16),
           Text(content.title, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 36)),
@@ -38,11 +44,9 @@ class HomeFollowUp extends StatelessWidget {
             child: Text(content.description, style: const TextStyle(fontWeight: FontWeight.w400)),
           ),
           const SizedBox(height: 16),
-          Flexible(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: content.numbers.map((e) => Text(e.toString())).toList(),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: content.numbers.map((e) => Text(e.toString())).toList(),
           ),
         ],
       ),
