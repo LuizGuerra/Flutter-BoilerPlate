@@ -1,7 +1,6 @@
 import 'package:boilerplate/interface/components/small_reusable_button.dart';
 import 'package:boilerplate/interface/views/home_tab/home_cell.dart';
 import 'package:boilerplate/router/routes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/filtered_content_controller.dart';
@@ -28,7 +27,7 @@ class FilterableStateListWidget extends State<FilterableListWidget> {
       itemCount: length + 2,
       itemBuilder: (context, index) {
         if (index == 0 || index == length + 1) {
-          return const SizedBox(height: _betweenCellsPadding);
+          return const SizedBox(height: _betweenCellsPadding*4);
         }
         final actualIndex = index - 1;
         return Padding(

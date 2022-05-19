@@ -37,6 +37,7 @@ class _HomeState extends State<Home> {
                 autocorrect: true,
                 backgroundColor: AppColors.background2,
                 itemColor: AppColors.white.withOpacity(0.8),
+                placeholder: "Search by title",
                 placeholderStyle:
                     TextStyle(color: AppColors.white.withOpacity(0.8)),
                 controller: searchController,

@@ -44,9 +44,12 @@ class HomeFollowUp extends StatelessWidget {
             child: Text(content.description, style: const TextStyle(fontWeight: FontWeight.w400)),
           ),
           const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: content.numbers.map((e) => Text(e.toString())).toList(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: content.numbers.map((e) => Text(e.toString())).toList(),
+            ),
           ),
         ],
       ),

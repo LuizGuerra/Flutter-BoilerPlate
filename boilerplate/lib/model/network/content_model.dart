@@ -20,13 +20,6 @@ class ContentModel with NetworkBasicOperationsMixin {
   // Downloaded data
   List<Content> contents = [];
 
-  // Model functions
-  Future<String> getSomething() async {
-    final response = await get(additionalPath: "example/request");
-    if (response == null) return "";
-    return response.body;
-  }
-
   // Get content that was already downloaded
   // If there is none, make sure to call updateContent() first
   List<Content> getContent() {
