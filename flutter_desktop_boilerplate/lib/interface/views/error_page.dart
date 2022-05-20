@@ -1,17 +1,17 @@
-import 'package:boilerplate/resources/app_colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
+import '../../resources/app_colors.dart';
 import '../../resources/app_strings.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text(""),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(""),
       ),
-      child: Center(
+      body: Center(
         child: Text(
           AppStrings.error.router,
           style: const TextStyle(color: AppColors.white),

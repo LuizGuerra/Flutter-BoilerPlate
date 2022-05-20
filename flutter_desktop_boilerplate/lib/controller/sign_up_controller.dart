@@ -1,4 +1,4 @@
-import 'package:boilerplate/model/network/user_model.dart';
+import '../model/network/user_model.dart';
 
 class SignUpController {
   UserModel singleton = UserModel();
