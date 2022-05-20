@@ -48,15 +48,14 @@ class ReusableTextField extends StatefulWidget {
       {Key? key,
       required this.placeholder,
       required this.controller,
-      TextFieldConfigurations? configuration = null,
+      TextFieldConfigurations? configurations = null,
       this.finality = TextFieldFinality.regular,
       double borderRadius = 20.0})
       : borderRadius = BorderRadius.all(Radius.circular(borderRadius)),
-        this.configuration =
-            configuration ?? TextFieldConfigurations.lightGray(),
+        configuration = configurations ?? TextFieldConfigurations.lightGray(),
         super(key: key);
-
   @override
+  // ignore: library_private_types_in_public_api
   _ReusableTextFieldState createState() => _ReusableTextFieldState();
 }
 

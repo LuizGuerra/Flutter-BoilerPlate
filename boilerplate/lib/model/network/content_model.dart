@@ -1,9 +1,11 @@
+
 import 'dart:convert';
 
 import 'package:boilerplate/model/entity/content.dart';
 import 'package:boilerplate/model/mixin/network_basic_operations_mixin.dart';
 import 'package:flutter/material.dart';
 
+// ignore_for_file: overridden_fields
 class ContentModel with NetworkBasicOperationsMixin {
   // Singleton implementation
   static final ContentModel _singleton =
