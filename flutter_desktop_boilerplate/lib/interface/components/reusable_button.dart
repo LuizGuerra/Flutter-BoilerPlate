@@ -1,21 +1,22 @@
-import 'package:boilerplate/resources/app_colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '../../resources/app_colors.dart';
 
 /// Configuration class for button configurations
 class ButtonConfigurations {
   final FontWeight fontWeight;
   final Color fontColor;
-  final Color backgroundColor;
   final double fontSize;
+  final Color backgroundColor;
   final double height;
   final bool hasBorder;
-  
+
   ///Initializer
   ButtonConfigurations(
       {this.fontWeight = FontWeight.w600,
       this.fontColor = AppColors.white,
-      this.backgroundColor = AppColors.mainColor,
       this.fontSize = 16,
+      this.backgroundColor = AppColors.mainColor,
       this.height = 54,
       this.hasBorder = false});
 
@@ -27,10 +28,14 @@ class ButtonConfigurations {
       hasBorder: true);
 
   static ButtonConfigurations plainText() => ButtonConfigurations(
-    fontWeight: FontWeight.w300,
-    fontColor: AppColors.white,
-    backgroundColor: AppColors.clear
-  );
+      fontWeight: FontWeight.w300,
+      fontColor: AppColors.white,
+      backgroundColor: AppColors.clear);
+
+  static ButtonConfigurations navigation() => ButtonConfigurations(
+      fontWeight: FontWeight.bold,
+      fontColor: AppColors.white,
+      backgroundColor: AppColors.background2);
 }
 
 /// Reusable button for the application
@@ -60,16 +65,32 @@ class ReusableButton extends StatefulWidget {
 class _ReusableButtonState extends State<ReusableButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: widget._configuration.height,
-      decoration: border(),
-      child: CupertinoButton(
+      width: null,
+      child: TextButton(
+        style: TextButton.styleFrom(
           padding: padding(),
-          color: widget._configuration.backgroundColor,
-          borderRadius: borderRadius(),
-          onPressed: widget._onPressed,
-          child: buttonChild()),
+          backgroundColor: widget._configuration.backgroundColor,
+          alignment: Alignment.centerLeft,
+          shape: shape(),
+          side: side(),
+        ),
+        onPressed: widget._onPressed,
+        child: buttonChild(),
+      ),
     );
+  }
+
+  RoundedRectangleBorder? shape() {
+    return const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20)));
+  }
+
+  BorderSide? side() {
+    return widget._configuration.hasBorder
+        ? BorderSide(color: widget._configuration.fontColor, width: 2)
+        : null;
   }
 
   BorderRadius borderRadius() => const BorderRadius.all(Radius.circular(20));
@@ -78,8 +99,7 @@ class _ReusableButtonState extends State<ReusableButton> {
     if (widget._configuration.hasBorder) {
       return BoxDecoration(
           border: Border.all(color: widget._configuration.fontColor, width: 2),
-          borderRadius: borderRadius()
-      );
+          borderRadius: borderRadius());
     }
     return const BoxDecoration();
   }
@@ -89,15 +109,20 @@ class _ReusableButtonState extends State<ReusableButton> {
   }
 
   Widget buttonChild() {
-    return Center(
-      child: Text(
-        widget._text,
-        style: TextStyle(
-          color: widget._configuration.fontColor,
-          fontSize: widget._configuration.fontSize,
-          fontWeight: widget._configuration.fontWeight,
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(Icons.home, color: widget._configuration.fontColor),
+        const SizedBox(width: 16),
+        Text(
+          widget._text,
+          style: TextStyle(
+            color: widget._configuration.fontColor,
+            fontSize: widget._configuration.fontSize,
+            fontWeight: widget._configuration.fontWeight,
+          ),
         ),
-      ),
+      ],
     );
   }
 }
