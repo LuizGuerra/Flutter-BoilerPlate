@@ -1,5 +1,6 @@
-import 'package:boilerplate/resources/app_colors.dart';
 import 'package:flutter/widgets.dart';
+
+import 'app_colors.dart';
 
 // https://www.flaticon.com/uicons
 // https://design.google.com/icons/

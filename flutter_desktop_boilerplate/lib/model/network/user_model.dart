@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:boilerplate/model/entity/user.dart';
-import 'package:boilerplate/model/mixin/network_basic_operations_mixin.dart';
+import '../entity/user.dart';
+import '../mixin/network_basic_operations_mixin.dart';
 
 // ignore_for_file: overridden_fields
-
 class UserModel with NetworkBasicOperationsMixin {
   // Singleton implementation
   static final UserModel _singleton = UserModel._internal(); // singleton constructor

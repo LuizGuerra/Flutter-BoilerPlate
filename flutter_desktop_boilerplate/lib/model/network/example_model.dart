@@ -1,4 +1,6 @@
-import 'package:boilerplate/model/mixin/network_basic_operations_mixin.dart';
+// ignore_for_file: overridden_fields
+
+import '../mixin/network_basic_operations_mixin.dart';
 
 class ExampleModel with NetworkBasicOperationsMixin {
   // Singleton implementation

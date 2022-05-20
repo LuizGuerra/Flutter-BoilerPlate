@@ -1,8 +1,8 @@
 import 'dart:convert';
-
-import 'package:boilerplate/model/entity/content.dart';
-import 'package:boilerplate/model/mixin/network_basic_operations_mixin.dart';
 import 'package:flutter/material.dart';
+
+import '../entity/content.dart';
+import '../mixin/network_basic_operations_mixin.dart';
 
 class ContentModel with NetworkBasicOperationsMixin {
   // Singleton implementation
