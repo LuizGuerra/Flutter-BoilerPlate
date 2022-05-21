@@ -2,10 +2,10 @@ import '../model/entity/content.dart';
 import '../model/network/content_model.dart';
 
 class ContentController {
-  void Function(List<Content>) onReceive;
+  void Function(List<Content>)? onReceive;
   final ContentModel model = ContentModel();
 
-  ContentController({required this.onReceive}) {
+  ContentController({this.onReceive}) {
     getNewContent();
   }
 
@@ -15,7 +15,9 @@ class ContentController {
 
   Future<List<Content>> getNewContent() async {
     await model.updateContent();
-    onReceive(model.getContent());
+    if (onReceive != null) {
+      onReceive!(model.getContent());
+    }
     return model.getContent();
   }
 }

@@ -60,7 +60,7 @@ extension ButtonSizeExtension on ButtonSize {
       case ButtonSize.small:
         return 54;
       case ButtonSize.medium:
-        return 300;
+        return 160;
     }
   }
 

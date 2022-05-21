@@ -12,11 +12,16 @@ class LeftNavigationScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sizeType = ButtonSizeExtension.fromAvailableSpace(
+        MediaQuery.of(context).size.width);
     return Scaffold(
       body: Row(
         children: [
+          SizedBox(width: (sizeType == ButtonSize.small) ? 20 : 40),
           LeftNavigation(currentRoute: currentRoute),
-          child ?? Container()
+          const SizedBox(width: 40),
+          Expanded(child: child ?? Container()),
+          SizedBox(width: (sizeType == ButtonSize.small) ? 20 : 40)
         ],
       ),
     );
@@ -32,9 +37,8 @@ class LeftNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final ButtonSize buttonSize = ButtonSizeExtension.fromAvailableSpace(
         MediaQuery.of(context).size.width);
-    return Container(
+    return SizedBox(
       width: buttonSize.toWidth(),
-      padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -53,7 +57,6 @@ class LeftNavigation extends StatelessWidget {
                     navigationRoutes.name,
                     navigationRoutes.iconData,
                     action: () {
-                      print("$currentRoute : ${navigationRoutes.route}");
                       // If is not trying to go to the same page that is currently loaded
                       if (currentRoute != navigationRoutes.route) {
                         Navigator.of(context)
@@ -66,9 +69,5 @@ class LeftNavigation extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  ButtonSize navigationSizeType(double availableWidth) {
-    return availableWidth >= 200 ? ButtonSize.medium : ButtonSize.small;
   }
 }

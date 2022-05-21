@@ -12,6 +12,9 @@ class FilteredContentController<Comparable> {
     return _filteredContent.isEmpty;
   }
 
+  // Returns if downloaded content is empty
+  bool isEmpty() => _content.isEmpty;
+
   List<Comparable> getList() => _filteredContent;
 
   void reset() {
