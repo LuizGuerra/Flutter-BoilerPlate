@@ -21,7 +21,7 @@ class NavigationButton extends StatelessWidget {
     return SizedBox(
       width: buttonSize.toWidth(),
       child: WidgetReusableButton(
-        configuration: WidgetButtonConfigurations.plainText(),
+        configuration: WidgetButtonConfigurations.navigation(),
         onPressed: () {
           action();
         },

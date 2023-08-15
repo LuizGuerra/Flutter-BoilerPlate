@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_desktop_boilerplate/model/network/user_model.dart';
 import 'package:flutter_desktop_boilerplate/router/routes.dart';
 
 import 'navigation_button.dart';
@@ -51,19 +52,25 @@ class LeftNavigation extends StatelessWidget {
           // Navigation Items
           const SizedBox(height: 8),
           ...Routes.menuNavigationRoutes()
-              .map((navigationRoutes) => Padding(
+              .map((navigationRoute) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 0),
                   child: NavigationButton(
-                    navigationRoutes.name,
-                    navigationRoutes.iconData,
+                    navigationRoute.name,
+                    navigationRoute.iconData,
                     action: () {
+                      if (navigationRoute.route == Routes.profile &&
+                          !UserModel().isConnected()) {
+                        // if is going to profile while logged off
+                        Navigator.of(context).pushNamed(navigationRoute.route);
+                        return;
+                      }
                       // If is not trying to go to the same page that is currently loaded
-                      if (currentRoute != navigationRoutes.route) {
+                      if (currentRoute != navigationRoute.route) {
                         Navigator.of(context)
-                            .pushReplacementNamed(navigationRoutes.route);
+                            .pushReplacementNamed(navigationRoute.route);
                       }
                     },
-                    isSelected: currentRoute == navigationRoutes.route,
+                    isSelected: currentRoute == navigationRoute.route,
                   )))
               .toList(),
         ],

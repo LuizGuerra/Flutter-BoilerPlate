@@ -7,23 +7,32 @@ class WidgetButtonConfigurations {
   final Color backgroundColor;
   final Color borderColor;
   final double height;
+  final EdgeInsets padding;
+  final BorderRadius borderRadius;
 
   ///Initializer
-  WidgetButtonConfigurations(
+  const WidgetButtonConfigurations(
       {this.backgroundColor = AppColors.mainColor,
       this.height = 54,
-      this.borderColor = AppColors.clear});
+      this.borderColor = AppColors.clear,
+      this.padding = const EdgeInsets.symmetric(horizontal: 20),
+      this.borderRadius = const BorderRadius.all(Radius.circular(20))});
 
-  static WidgetButtonConfigurations main() => WidgetButtonConfigurations();
+  static WidgetButtonConfigurations main() => const WidgetButtonConfigurations();
 
-  static WidgetButtonConfigurations secondary() => WidgetButtonConfigurations(
+  static WidgetButtonConfigurations secondary() => const WidgetButtonConfigurations(
       backgroundColor: AppColors.background, borderColor: AppColors.mainColor);
 
-  static WidgetButtonConfigurations plainText() =>
-      WidgetButtonConfigurations(backgroundColor: AppColors.clear);
+  static WidgetButtonConfigurations plain() =>
+      const WidgetButtonConfigurations(backgroundColor: AppColors.clear, padding: EdgeInsets.zero);
 
   static WidgetButtonConfigurations navigation() =>
-      WidgetButtonConfigurations(backgroundColor: AppColors.background2);
+      const WidgetButtonConfigurations(backgroundColor: AppColors.clear);
+
+  static WidgetButtonConfigurations grid() => const WidgetButtonConfigurations(
+      backgroundColor: AppColors.clear,
+      padding: EdgeInsets.symmetric(horizontal: 0),
+      borderRadius: BorderRadius.zero);
 }
 
 /// Reusable button for the application
@@ -38,13 +47,13 @@ class WidgetReusableButton extends StatefulWidget {
   final VoidCallback _onPressed;
 
   /// ReusableButton constructor
-  WidgetReusableButton(
+  const WidgetReusableButton(
       {super.key,
       required this.child,
       WidgetButtonConfigurations? configuration,
       required VoidCallback onPressed})
       : _onPressed = onPressed,
-        _configuration = configuration ?? WidgetButtonConfigurations();
+        _configuration = configuration ?? const WidgetButtonConfigurations();
 
   @override
   State<WidgetReusableButton> createState() => _WidgetReusableButtonState();
@@ -57,7 +66,7 @@ class _WidgetReusableButtonState extends State<WidgetReusableButton> {
       height: widget._configuration.height,
       child: TextButton(
           style: TextButton.styleFrom(
-            padding: padding(),
+            padding: widget._configuration.padding,
             backgroundColor: widget._configuration.backgroundColor,
             alignment: Alignment.centerLeft,
             shape: shape(),
@@ -78,11 +87,17 @@ class _WidgetReusableButtonState extends State<WidgetReusableButton> {
   }
 
   RoundedRectangleBorder? shape() {
-    return const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(20)));
+    if (widget._configuration.borderRadius == BorderRadius.zero) {
+      return null;
+    }
+    return RoundedRectangleBorder(
+        borderRadius: widget._configuration.borderRadius);
   }
 
   BorderSide? side() {
+    if (widget._configuration.borderRadius == BorderRadius.zero) {
+      return null;
+    }
     return BorderSide(color: widget._configuration.borderColor, width: 2);
   }
 
@@ -92,9 +107,5 @@ class _WidgetReusableButtonState extends State<WidgetReusableButton> {
     return BoxDecoration(
         border: Border.all(color: widget._configuration.borderColor, width: 2),
         borderRadius: borderRadius());
-  }
-
-  EdgeInsetsGeometry padding() {
-    return const EdgeInsets.symmetric(horizontal: 20.0);
   }
 }

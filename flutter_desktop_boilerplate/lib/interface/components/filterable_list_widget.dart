@@ -33,7 +33,7 @@ class FilterableStateListWidget extends State<FilterableListWidget> {
           padding: const EdgeInsets.symmetric(
               horizontal: 20, vertical: _betweenCellsPadding),
           child: WidgetReusableButton(
-            configuration: WidgetButtonConfigurations.plainText(),
+            configuration: WidgetButtonConfigurations.plain(),
             onPressed: () {
               Navigator.of(context)
                   .pushNamed(Routes.homeFollowUp, arguments: list[actualIndex]);

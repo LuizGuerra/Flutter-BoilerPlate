@@ -48,12 +48,12 @@ class ReusableTextField extends StatefulWidget {
       {Key? key,
       required this.placeholder,
       required this.controller,
-      TextFieldConfigurations? configuration = null,
+      TextFieldConfigurations? configurations = null,
       this.finality = TextFieldFinality.regular,
       double borderRadius = 20.0})
       : borderRadius = BorderRadius.all(Radius.circular(borderRadius)),
         this.configuration =
-            configuration ?? TextFieldConfigurations.lightGray(),
+            configurations ?? TextFieldConfigurations.lightGray(),
         super(key: key);
 
   @override
@@ -61,9 +61,6 @@ class ReusableTextField extends StatefulWidget {
 }
 
 class _ReusableTextFieldState extends State<ReusableTextField> {
-  ///Initializer
-  _ReusableTextFieldState();
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -75,7 +72,7 @@ class _ReusableTextFieldState extends State<ReusableTextField> {
         autocorrect: !_isEmail(),
         controller: widget.controller,
         placeholderStyle: TextStyle(
-          color: widget.configuration.fieldColor,
+          color: widget.configuration.fieldColor.withOpacity(0.8),
           fontSize: widget.configuration.fontSize,
           fontWeight: widget.configuration.fontWeight,
         ),

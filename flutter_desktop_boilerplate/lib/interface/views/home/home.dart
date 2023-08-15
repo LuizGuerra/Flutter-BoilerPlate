@@ -21,7 +21,6 @@ class _HomeState extends State<Home> {
   late final FilteredContentController<Content> filterController;
 
   final TextEditingController searchController = TextEditingController();
-  bool noMatchingFlag = false;
   bool iconButtonWasTapped = false;
 
   @override
@@ -34,7 +33,6 @@ class _HomeState extends State<Home> {
           children: [
             title(),
             search(),
-            noMatchingFlagWidget(),
             Expanded(child: FilterableGridWidget(filterController: filterController)),
             // gridView(),
           ],
@@ -85,16 +83,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget noMatchingFlagWidget() {
-    if (noMatchingFlag) {
-      return const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Text("No matching value found..."),
-      );
-    }
-    return Container();
-  }
-
   /// Receive and update data behavior
   @override
   void initState() {
@@ -113,7 +101,7 @@ class _HomeState extends State<Home> {
     if (input.isEmpty) {
       filterController.reset();
     } else {
-      noMatchingFlag = filterController.filter((e) => e.title.contains(input));
+      filterController.filter((e) => e.title.toLowerCase().contains(input.toLowerCase()));
     }
     setState(() {});
   }

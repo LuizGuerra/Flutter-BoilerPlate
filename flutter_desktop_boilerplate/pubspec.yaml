@@ -12,8 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  fzregex: ^2.0.0
   http: ^0.13.4
   localstorage: ^4.0.0+1
+  connectivity_plus: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -25,5 +27,6 @@ flutter:
   assets:
     - assets/
     - assets/images/
+
     # - assets/icons/
 

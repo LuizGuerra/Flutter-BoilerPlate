@@ -11,7 +11,7 @@ class HomeCell extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(8),
       child: Container(
         color: AppColors.background2,
         child: Column(
@@ -21,7 +21,6 @@ class HomeCell extends StatelessWidget {
             Flexible(
               child: Image.network(
                 content.image,
-                // height: 80,
                 width: width,
                 fit: BoxFit.cover,
                 errorBuilder: (context, widget, chunk) => Container(

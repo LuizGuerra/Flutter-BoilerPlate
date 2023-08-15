@@ -110,10 +110,8 @@ class _ReusableButtonState extends State<ReusableButton> {
 
   Widget buttonChild() {
     return Row(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(Icons.home, color: widget._configuration.fontColor),
-        const SizedBox(width: 16),
         Text(
           widget._text,
           style: TextStyle(

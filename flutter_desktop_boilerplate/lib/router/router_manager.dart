@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_desktop_boilerplate/interface/views/home/home.dart';
+import 'package:flutter_desktop_boilerplate/interface/views/home/home_follow_up.dart';
 import 'package:flutter_desktop_boilerplate/interface/views/profile/profile.dart';
+import 'package:flutter_desktop_boilerplate/model/entity/content.dart';
 import 'package:flutter_desktop_boilerplate/router/routes.dart';
 
 import '../interface/views/error_page.dart';
@@ -24,8 +26,11 @@ class RouterManager {
               return const App();
             case Routes.home:
               return const Home();
-            // case Routes.home:
-            //   return const Home();
+            case Routes.homeFollowUp:
+              if (args is Content) {
+                return HomeFollowUp(content: args);
+              }
+              break;
             // case Routes.homeFollowUp:
             //   if (args is Content) {
             //     return HomeFollowUp(content: args);
